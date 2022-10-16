@@ -37,7 +37,7 @@ export  function App() {
         setTotalPages(data.totalHits);
     }
     catch (error) {
-      setError(error)
+      setError(error);
     }
     finally {
         setIsLoading(false);
