@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState} from 'react';
 import {
   Header,
   Form,
@@ -6,25 +6,22 @@ import {
   SearchFormInput,
 } from './Searchbar.module';
 
-export class Searchbar extends Component {
-  state = {
-    query: '',
+
+
+export  function Searchbar({onSearch}) {
+  const [query, setQuery] = useState('');
+ 
+const handleChange = e => {
+    setQuery(e.target.value.toLowerCase() );
   };
 
-  handleChange = e => {
-    this.setState({ query: e.target.value.toLowerCase() });
-  };
-
-  handelSubmit = e => {
+  const handelSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.state.query);
+    onSearch(query);
   };
 
-  render() {
-    const { query } = this.state;
-    const { handelSubmit, handleChange } = this;
 
-    return (
+  return (
       <Header>
         <Form onSubmit={handelSubmit}>
           <SearchFormButton type="submit">
@@ -42,5 +39,5 @@ export class Searchbar extends Component {
         </Form>
       </Header>
     );
-  }
 }
+
